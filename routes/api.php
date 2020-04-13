@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +12,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('login', 'API\UserController@login');
-Route::post('register', 'API\UserController@register');
+Route::get('/login', 'API\UserController@login')->name('API.login');
+Route::get('/register', 'API\UserController@register')->name('API.register');
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::post('details', 'API\UserController@details');
+    Route::get('/students', 'API\StudentController@fetch');
 });
