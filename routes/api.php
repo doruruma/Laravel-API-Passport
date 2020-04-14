@@ -12,8 +12,11 @@
 |
 */
 
-Route::get('/login', 'API\UserController@login')->name('API.login');
-Route::get('/register', 'API\UserController@register')->name('API.register');
+Route::post('/login', 'API\AuthController@login')->name('API.login');
+Route::post('/register', 'API\AuthController@register')->name('API.register');
+Route::get('/logout', 'API\AuthController@logout')->name('API.logout');
+
+Route::get('/unauthorized', 'API\AuthController@unauthorized')->name('API.unauthorized');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/students', 'API\StudentController@fetch');
